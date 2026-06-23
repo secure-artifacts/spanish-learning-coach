@@ -22,6 +22,19 @@ export interface GrammarTopic {
   speakHint?: string;
   dictation?: string;
   practiceItems?: string[];
+  /** 本课词汇（可选，否则自动生成） */
+  vocabulary?: { es: string; zh: string; note?: string }[];
+  /** 额外测验 */
+  extraQuizzes?: {
+    question: string;
+    options: string[];
+    correctIndex: number;
+    explanation?: string;
+  }[];
+  extraDictations?: string[];
+  extraSpeakPrompts?: string[];
+  fillBlanks?: { prompt: string; answer: string; hint?: string }[];
+  translationDrills?: { zh: string; es: string }[];
 }
 
 export const LEVEL_META: Record<

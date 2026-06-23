@@ -6,7 +6,10 @@ export type StepType =
   | 'read'
   | 'practice'
   | 'reflect'
-  | 'link';
+  | 'link'
+  | 'vocab'
+  | 'fillblank'
+  | 'translate';
 
 export type SessionKind = 'micro' | 'deep' | 'review';
 
@@ -36,6 +39,12 @@ export interface Step {
   quizOptions?: QuizOption[];
   quizExplanation?: string;
   checklist?: string[];
+  /** 词汇积累 */
+  vocabItems?: { es: string; zh: string; note?: string }[];
+  /** 填空练习 */
+  fillBlanks?: { prompt: string; answer: string; hint?: string }[];
+  /** 中译西 */
+  translationItems?: { zh: string; es: string }[];
 }
 
 export interface DayPlan {

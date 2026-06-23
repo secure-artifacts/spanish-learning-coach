@@ -4,6 +4,9 @@ import { SpeakStep } from './SpeakStep';
 import { DictationStep } from './DictationStep';
 import { QuizStep } from './QuizStep';
 import { GenericStep } from './GenericStep';
+import { VocabStep } from './VocabStep';
+import { FillBlankStep } from './FillBlankStep';
+import { TranslateStep } from './TranslateStep';
 
 const TYPE_LABELS: Record<StepType, string> = {
   video: '📺 观看视频',
@@ -14,6 +17,9 @@ const TYPE_LABELS: Record<StepType, string> = {
   practice: '💪 动手练习',
   reflect: '🪞 复盘反思',
   link: '🔗 外部资源',
+  vocab: '📚 词汇积累',
+  fillblank: '✏️ 填空',
+  translate: '🔄 翻译',
 };
 
 const SESSION_LABELS = {
@@ -40,6 +46,12 @@ export function StepCard({ step, index, done, onToggle }: Props) {
         return <DictationStep step={step} done={done} onToggle={onToggle} />;
       case 'quiz':
         return <QuizStep step={step} done={done} onToggle={onToggle} />;
+      case 'vocab':
+        return <VocabStep step={step} done={done} onToggle={onToggle} />;
+      case 'fillblank':
+        return <FillBlankStep step={step} done={done} onToggle={onToggle} />;
+      case 'translate':
+        return <TranslateStep step={step} done={done} onToggle={onToggle} />;
       default:
         return <GenericStep step={step} done={done} onToggle={onToggle} />;
     }

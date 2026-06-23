@@ -1,5 +1,6 @@
 import type { Curriculum, PhasePlan } from '../../types';
 import { buildGrammarDay, groupIntoWeeks } from './buildUnit';
+import { enrichTopic } from './enrichTopic';
 import type { CefrLevel, GrammarTopic } from './types';
 import { LEVEL_META } from './types';
 import { A1_TOPICS } from './levels/a1';
@@ -10,10 +11,13 @@ import { C1_TOPICS, C2_TOPICS } from './levels/b2-c2';
 
 function buildPhase(level: CefrLevel, topics: GrammarTopic[]): PhasePlan {
   const meta = LEVEL_META[level];
-  const items = topics.map((t, i) => ({
-    topic: t,
-    day: buildGrammarDay(level, i, t),
-  }));
+  const items = topics.map((t, i) => {
+    const enriched = enrichTopic(level, i, t);
+    return {
+      topic: enriched,
+      day: buildGrammarDay(level, i, enriched),
+    };
+  });
   const globalWeekOffset = getWeekOffset(level);
   const weeks = groupIntoWeeks(level, items, globalWeekOffset);
 
@@ -66,7 +70,7 @@ export function buildFullCurriculum(): Curriculum {
 
   return {
     title: '西语完整语法路线 A1→C2',
-    subtitle: `${totalTopics} 个语法单元 · CEFR 全等级 · YouTube + 口语 + 听写 + 测验`,
+    subtitle: `${totalTopics} 语法单元 · 每课 15+ 练习步骤 · 词汇积累本 · A1→C2`,
     startLevel: 'A1（零基础）',
     targetLevel: 'C2（精通）',
     phases,

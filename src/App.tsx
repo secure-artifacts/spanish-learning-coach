@@ -3,6 +3,8 @@ import { curriculum, countSteps, countGrammarUnits } from './data/curriculum';
 import { useProgress } from './hooks/useProgress';
 import { StepCard } from './components/StepCard';
 import { GoogleLoginBar } from './components/GoogleLoginBar';
+import { AccumulationPanel } from './components/AccumulationPanel';
+import { useAccumulation } from './hooks/useAccumulation';
 import type { DayPlan, WeekPlan } from './types';
 import './App.css';
 
@@ -22,7 +24,9 @@ function App() {
   const allDays = useMemo(() => flattenDays(), []);
   const [selectedDayId, setSelectedDayId] = useState(allDays[0]?.day.id ?? '');
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [accumOpen, setAccumOpen] = useState(false);
   const { progress, toggleStep, resetAll } = useProgress();
+  const { items: accumItems } = useAccumulation();
 
   const totalSteps = countSteps();
   const doneCount = Object.values(progress).filter(Boolean).length;
@@ -61,7 +65,12 @@ function App() {
           </span>
         </div>
         <GoogleLoginBar />
+        <button type="button" className="btn-accum" onClick={() => setAccumOpen(true)} title="我的积累本">
+          📚 {accumItems.length > 0 ? accumItems.length : ''}
+        </button>
       </header>
+
+      <AccumulationPanel open={accumOpen} onClose={() => setAccumOpen(false)} />
 
       <div className="layout">
         <aside className={`sidebar ${sidebarOpen ? 'open' : ''}`}>

@@ -616,6 +616,292 @@ body {
   color: var(--gold) !important;
 }
 
+/* Accumulation */
+.btn-accum {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--gold);
+  padding: 0.45rem 0.75rem;
+  border-radius: 99px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.btn-accum:hover {
+  border-color: var(--gold);
+}
+
+.accum-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.accum-panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  width: min(520px, 100%);
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.accum-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.accum-header h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  flex: 1;
+}
+
+.accum-count {
+  font-size: 0.8rem;
+  color: var(--green);
+}
+
+.accum-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.accum-tip {
+  padding: 0.75rem 1.25rem;
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.accum-empty {
+  padding: 2rem;
+  text-align: center;
+  color: var(--text-muted);
+}
+
+.accum-list {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.accum-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.accum-word {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.accum-word strong {
+  color: var(--gold);
+}
+
+.accum-word small {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.accum-source {
+  color: var(--accent) !important;
+}
+
+.accum-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  flex-shrink: 0;
+}
+
+.accum-footer {
+  padding: 0.75rem 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.btn-icon {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.35rem 0.5rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+/* Vocab cards */
+.vocab-stats {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.vocab-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.vocab-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.75rem;
+  transition: border-color 0.15s;
+}
+
+.vocab-card.known {
+  border-color: var(--green);
+  opacity: 0.75;
+}
+
+.vocab-card.flipped {
+  border-color: var(--gold);
+}
+
+.vocab-face {
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+}
+
+.vocab-es {
+  display: block;
+  font-weight: 600;
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+
+.vocab-zh {
+  display: block;
+  font-size: 0.85rem;
+  margin-top: 0.35rem;
+  color: var(--text);
+}
+
+.vocab-note {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-top: 0.25rem;
+}
+
+.vocab-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border);
+}
+
+.vocab-check {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* Fill blank */
+.fillblank-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fillblank-item {
+  padding: 0.75rem;
+  background: var(--bg);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.fillblank-item.correct {
+  border-color: var(--green);
+}
+
+.fillblank-item.wrong {
+  border-color: #c0392b;
+}
+
+.fillblank-prompt {
+  margin: 0 0 0.5rem;
+  font-style: italic;
+  color: var(--gold);
+}
+
+.fillblank-hint {
+  margin: 0 0 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.fillblank-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: var(--text);
+  font-family: inherit;
+}
+
+.fillblank-answer {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: var(--green);
+}
+
+/* Translate */
+.translate-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.translate-zh {
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.translate-answer {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  color: var(--green);
+  font-style: italic;
+}
+
 /* Google / YouTube auth */
 .google-auth {
   display: flex;

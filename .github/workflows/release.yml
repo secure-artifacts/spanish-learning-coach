@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     permissions:
       id-token: write
       contents: write
@@ -25,11 +25,14 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Package Windows app
+        run: npm run pack:win
 
-      - name: Package dist into zip
-        run: cd dist && zip -r ../spanish-learning-coach-${{ github.ref_name }}.zip .
+      - name: Zip packaged app
+        shell: pwsh
+        run: |
+          $folder = Get-ChildItem release -Directory | Select-Object -First 1
+          Compress-Archive -Path $folder.FullName -DestinationPath "SpanishLearningCoach-${{ github.ref_name }}-win64.zip" -Force
 
       - name: Attest Build Provenance
         uses: actions/attest-build-provenance@v2

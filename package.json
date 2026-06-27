@@ -1,7 +1,7 @@
 {
   "name": "spanish-learning-coach",
   "private": true,
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "main": "electron/main.cjs",
   "productName": "多语言学习教练",

@@ -25,22 +25,16 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
-      - name: Package Windows app
-        run: npm run pack:win
-
-      - name: Zip packaged app
-        shell: pwsh
-        run: |
-          $folder = Get-ChildItem release -Directory | Select-Object -First 1
-          Compress-Archive -Path $folder.FullName -DestinationPath "SpanishLearningCoach-${{ github.ref_name }}-win64.zip" -Force
+      - name: Build portable Windows exe
+        run: npm run dist:win
 
       - name: Attest Build Provenance
         uses: actions/attest-build-provenance@v2
         with:
-          subject-path: '*.zip'
+          subject-path: 'release/*.exe'
 
       - name: Create Release
         uses: softprops/action-gh-release@v2
         with:
-          files: '*.zip'
+          files: 'release/*.exe'
           generate_release_notes: true

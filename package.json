@@ -1,7 +1,7 @@
 {
   "name": "spanish-learning-coach",
   "private": true,
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "main": "electron/main.cjs",
   "productName": "多语言学习教练",
@@ -14,7 +14,32 @@
     "postinstall": "node scripts/install-electron.cjs",
     "desktop": "npm run build && electron .",
     "desktop:dev": "cross-env DESKTOP_DEV=1 electron .",
-    "pack:win": "npm run build && node scripts/pack.cjs"
+    "pack:win": "npm run build && node scripts/pack.cjs",
+    "dist:win": "npm run build && electron-builder --win portable --publish never"
+  },
+  "build": {
+    "appId": "com.secure-artifacts.spanish-learning-coach",
+    "productName": "多语言学习教练",
+    "directories": {
+      "output": "release",
+      "buildResources": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "build/icon.ico",
+      "package.json"
+    ],
+    "asarUnpack": [
+      "dist/**/*"
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "build/icon.ico"
+    },
+    "portable": {
+      "artifactName": "SpanishLearningCoach-${version}-portable.exe"
+    }
   },
   "dependencies": {
     "@react-oauth/google": "^0.13.5",
@@ -29,6 +54,7 @@
     "@vitejs/plugin-react": "^6.0.1",
     "cross-env": "^7.0.3",
     "electron": "^35.7.5",
+    "electron-builder": "^25.1.8",
     "eslint": "^10.3.0",
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.2",
